@@ -5,7 +5,7 @@
 
   tasks:
     - name: Get latest version of pip package
-      shell: "curl -s https://pypi.org/pypi/${pip_pkg}/json | jq --raw-output '.info.version'"
+      shell: "curl -s https://pypi.org/pypi/{{ pip_pkg }}/json | jq --raw-output '.info.version'"
       register: pip_pkg_version
 
     - name: Create template of requirements.txt
