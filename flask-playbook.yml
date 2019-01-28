@@ -1,7 +1,17 @@
+# Example:
+# $ ansible-playbook flask-playbook.yml --extra-vars "project_dir=/home/you/your-project"
+
 - hosts: localhost
   gather_facts: no
 
   tasks:
+    - name: Create Flask directory structure
+      file:
+        path: "{{ item }}"
+      with_items: 
+        - "{{ project_dir }}"
+        - "{{ project_dir }}/web"
+
     - name: Get latest version of pip package
       uri:
         url: "https://pypi.org/pypi/Flask/json"
@@ -16,4 +26,5 @@
     - name: Create template of requirements.txt
       template:
         src: templates/requirements.txt.j2
-        dest: requirements.txt
+        dest: "{{ project_dir }}/requirements.txt"
+
