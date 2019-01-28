@@ -11,7 +11,7 @@
       register: pypi_Flask
 
     - set_fact:
-        flask_latest: pypi_Flask.json.info.version
+        flask_latest: "{{ pypi_Flask.json.info.version }}"
 
     - name: Create template of requirements.txt
       template:
