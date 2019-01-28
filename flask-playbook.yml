@@ -15,5 +15,5 @@
 
     - name: Create template of requirements.txt
       template:
-        src: requirements.txt.j2
+        src: templates/requirements.txt.j2
         dest: requirements.txt
