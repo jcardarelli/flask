@@ -28,3 +28,9 @@
       template:
         src: templates/requirements.txt.j2
         dest: "{{ project_dir }}/requirements.txt"
+
+    - name: Build docker image
+      docker_image:
+        path: "{{ project_dir }}"
+        name: "flask"
+
