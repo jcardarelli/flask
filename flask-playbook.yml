@@ -8,6 +8,7 @@
     - name: Create Flask directory structure
       file:
         path: "{{ item }}"
+        state: directory
       with_items: 
         - "{{ project_dir }}"
         - "{{ project_dir }}/web"
@@ -27,4 +28,3 @@
       template:
         src: templates/requirements.txt.j2
         dest: "{{ project_dir }}/requirements.txt"
-
