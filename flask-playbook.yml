@@ -1,12 +1,17 @@
-- hosts: all
-
-  vars:
-    pip_pkg: Flask
+- hosts: localhost
+  gather_facts: no
 
   tasks:
     - name: Get latest version of pip package
-      shell: "curl -s https://pypi.org/pypi/{{ pip_pkg }}/json | jq --raw-output '.info.version'"
-      register: pip_package_latest_version
+      uri:
+        url: "https://pypi.org/pypi/Flask/json"
+        method: GET
+        status_code: 200
+        body_format: json
+      register: pypi_Flask
+
+    - set_fact:
+        flask_latest: pypi_Flask.json.info.version
 
     - name: Create template of requirements.txt
       template:
